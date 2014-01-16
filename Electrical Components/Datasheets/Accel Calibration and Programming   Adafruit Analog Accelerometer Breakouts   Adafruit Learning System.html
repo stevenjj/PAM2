@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/programming -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<div class="fit-vids-style" id="fit-vids-style" style="display: none;">­<style>.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></div><script type="text/javascript" async="" src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/ga.js"></script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-2.newrelic.com","errorBeacon":"jserror.newrelic.com","licenseKey":"308175db61","applicationID":"3238541","transactionName":"cVZXRUFeWghRShtEVlVcSh5AWVkT","queueTime":0,"applicationTime":1405,"ttGuid":"a39c62d1a7be4091","agentToken":"1baeee9b18617f34","agent":"js-agent.newrelic.com/nr-283.min.js","extra":""}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function a(b,c,d){function e(f){if(!c[f]){var g=c[f]={exports:{}};b[f][0].call(g.exports,function(a){var c=b[f][1][a];return e(c?c:a)},g,g.exports,a,b,c,d)}return c[f].exports}for(var f=0;f<d.length;f++)e(d[f]);return e}({"4O2Y62":[function(a,b){function c(a,b){var c=d[a];return c?c.apply(this,b):(e[a]||(e[a]=[]),e[a].push(b),void 0)}var d={},e={};b.exports=c,c.queues=e,c.handlers=d},{}],handle:[function(a,b){b.exports=a("4O2Y62")},{}],"SvQ0B+":[function(a,b){function c(a){if(a===window)return 0;if(e.call(a,"__nr"))return a.__nr;try{return Object.defineProperty(a,"__nr",{value:d,writable:!1,configurable:!1,enumerable:!1}),d}catch(b){return a.__nr=d,d}finally{d+=1}}var d=1,e=Object.prototype.hasOwnProperty;b.exports=c},{}],id:[function(a,b){b.exports=a("SvQ0B+")},{}],YLUGVp:[function(a,b){function c(){var a=m.info=NREUM.info,b=m.proto="http"+(a.sslForHttp?"s":"s"==l[4]?"s":"")+"://";if(a&&a.agent&&a.licenseKey&&a.applicationID){f("mark",["onload",e()]);var c=h.createElement("script");c.src=b+a.agent,h.body.appendChild(c)}}function d(){"complete"===h.readyState&&f("mark",["domContent",e()])}function e(){return(new Date).getTime()}var f=a("handle"),g=window,h=g.document,i="readystatechange",j="addEventListener",k="attachEvent",l=(""+location).split("?")[0],m=b.exports={offset:e(),origin:l};h[j]?(h[j](i,d,!1),g[j]("load",c,!1)):(h[k]("on"+i,d),g[k]("onload",c)),f("mark",["firstbyte",e()])},{handle:"4O2Y62"}],loader:[function(a,b){b.exports=a("YLUGVp")},{}]},{},["YLUGVp"]);</script>
+  <meta charset="utf-8">
+    <title>Calibration and Programming | Adafruit Analog Accelerometer Breakouts | Adafruit Learning System</title>
+  <meta content="authenticity_token" name="csrf-param">
+<meta content="27uEk1hTezldYrE+VDCgmdMIm4UZtEe6qe6yflkdEC8=" name="csrf-token">
+  <link href="http://learn.adafruit.com/feed" rel="alternate" title="ATOM" type="application/atom+xml">
+  <link href="http://learn.adafruit.com/feed.rss" rel="alternate" title="RSS" type="application/rss+xml">
+  <link href="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/application-d62da2a6bd6b034ef14f3951d14c75b1.css" media="screen" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <!--[if lte IE 7]>
+      <link href="/assets/ie/ie7-1b13569e9620782f423d4cd3ce931750.css" media="all" rel="stylesheet" type="text/css" />
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+  <link href="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System.html" rel="canonical">
+<style type="text/css"></style></head>
+
+<body onload="prettyPrint()" class="application pages show" data-spy="scroll" data-target=".subnav-home" data-offset="90">
+  <div class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="navbar-width container-fluid" style="margin: 0 auto">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+        <a class="brand" href="http://learn.adafruit.com/"> 
+          <img alt="Adafruit Learning System Logo" class="hidden-phone" src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/als_logo@2x.png" style="height=30px;width:258px;">
+          <img alt="Adafruit Learning System Logo" class="visible-phone" src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/als_logo_iphone@2x.png" style="height:30px;width:155px">
+        </a>    
+    
+      <div class="nav-collapse visible-phone visible-tablet">
+
+        <ul class="nav">
+            	<li class="">
+		<a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/overview" class="sidebar-parent">Overview</a>
+				<i class="icon-chevron-right hidden-phone hidden-tablet"></i>
+</li>
+	<li class="">
+		<a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/wiring" class="sidebar-parent">Assembly and Wiring</a>
+				<i class="icon-chevron-right hidden-phone hidden-tablet"></i>
+</li>
+	<li class="active">
+		<a href="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System.html" class="sidebar-parent">Calibration and Programming</a>
+				<i class="icon-chevron-right hidden-phone hidden-tablet"></i>
+</li>
+	<li class="">
+		<a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/downloads" class="sidebar-parent">Downloads</a>
+				<i class="icon-chevron-right hidden-phone hidden-tablet"></i>
+</li>
+
+            <li><a href="http://learn.adafruit.com/downloads/pdf/adafruit-analog-accelerometer-breakouts.pdf">Download PDF</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+
+      <form accept-charset="UTF-8" action="http://learn.adafruit.com/search" class="navbar-form pull-right hidden-phone hidden-tablet" method="get">
+        <input class="custom-search ui-autocomplete-input" type="text" name="q" placeholder="Search the Adafruit Learning System" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+      </form>
+      <p class="navbar-text pull-right hidden-phone hidden-tablet als-cart">      
+        <a href="https://www.adafruit.com/index.php?main_page=shopping_cart&source=als" style="display: none"><i class="icon-shopping-cart"></i> Shopping Cart</a>
+      </p>
+
+    </div>
+  </div>
+</div>
+  <div class="container-fluid primary-content-wrapper">
+    <div class="notice-bar-wrapper">
+	<div class="notice-bar">
+	</div>
+</div>
+    <div class="page-wrapper">
+
+	<div class="category-nav hidden-phone hidden-tablet">
+		<div class="category-nav-pages-crumb">
+			<ul class="breadcrumb">
+				<li>
+					<a href="http://learn.adafruit.com/" class="all-categories">Home</a><span class="divider">/</span>
+				</li>
+				<li>
+					<a href="http://learn.adafruit.com/category/sensors">Sensors</a><span class="divider">/</span>
+				</li>
+				<li>
+					<a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/overview">Adafruit Analog Accelerometer Breakouts</a><span class="divider">/</span>
+				</li>				
+				<li>
+					<span class="selected-category">Calibration and Programming</span>
+				</li>				
+			</ul>
+		</div>
+	</div>
+	<div class="adafruit-banner">
+	  <a href="http://www.adafruit.com/mhosresistance"><img alt="Mhosresistancef" src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/mhosresistancef-af09f3324f92b4e4b415e60d14e0e110.jpg"></a>
+	</div>  
+	<div class="content-wrapper">
+		  <div class="sidebar-right-wrapper">
+    <header class="hidden-phone hidden-tablet sidebar-right">
+        <div class="sidebar-right-content">
+  <h4>Featured in this Guide</h4>
+    <div class="product-wrapper">
+      <div class="product-title">ADXL335 - 5V ready triple-axis accelerometer (+-3g analog out)</div>
+      <div class="product-image">
+        <a href="http://www.adafruit.com/products/163">
+          <img src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/163_MED.jpg" alt="163_MED.jpg" height="173">
+</a>      </div>
+      <div class="product-details">
+        <span class="product-price">$14.95</span>
+        <span class="product-buy">
+            <a href="http://www.adafruit.com/products/163" id="163-product">
+              Add to Cart
+</a>        </span>
+      </div>
+    </div>
+    <div class="product-wrapper">
+      <div class="product-title">ADXL326 - 5V ready triple-axis accelerometer (+-16g analog out)</div>
+      <div class="product-image">
+        <a href="http://www.adafruit.com/products/1018">
+          <img src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/1018_MED.jpg" alt="1018_MED.jpg" height="173">
+</a>      </div>
+      <div class="product-details">
+        <span class="product-price">$17.95</span>
+        <span class="product-buy">
+            <a href="http://www.adafruit.com/products/1018" id="1018-product">
+              Add to Cart
+</a>        </span>
+      </div>
+    </div>
+    <div class="product-wrapper">
+      <div class="product-title">Arduino Uno R3 (Atmega328 - assembled)</div>
+      <div class="product-image">
+        <a href="http://www.adafruit.com/products/50">
+          <img src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/50_MED.jpg" alt="50_MED.jpg" height="173">
+</a>      </div>
+      <div class="product-details">
+        <span class="product-price">$29.95</span>
+        <span class="product-buy">
+            <a href="http://www.adafruit.com/products/50" id="50-product">
+              Add to Cart
+</a>        </span>
+      </div>
+    </div>
+    <div class="product-wrapper">
+      <div class="product-title">ADXL377 - High-G Triple-Axis Accelerometer (+-200g Analog Out)</div>
+      <div class="product-image">
+        <a href="http://www.adafruit.com/products/1413">
+          <img src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/1413_MED.jpg" alt="1413_MED.jpg" height="173">
+</a>      </div>
+      <div class="product-details">
+        <span class="product-price">$24.95</span>
+        <span class="product-buy">
+            <a href="http://www.adafruit.com/products/1413" id="1413-product">
+              Add to Cart
+</a>        </span>
+      </div>
+    </div>
+  <div class="product-details">
+    <div class="add-all-to-cart-container">
+      <a class="add-all-to-cart" href="">Add all to Cart</a>
+      <div class="add-all-to-cart-progress"></div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+<div class="modal fade" id="notify-modal">
+  <div class="modal-header">
+    <a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/programming#" class="close" data-dismiss="modal">×</a>
+    <h5>Out of Stock Notification</h5>
+  </div>
+  <div class="modal-body">
+    <p class="notify-modal-form-header"></p>
+    <div class="notify-modal-products"></div>
+    <form id="notify-modal-form" name="back_in_stock_notification">
+      <p class="notify-modal-form-notice"></p>
+      <div class="notify-modal-break"></div>
+      <label class="inputLabel" for="name">Your Name:</label>
+      <input type="text" size="25" maxlength="64" name="name" value="">
+
+      <label class="inputLabel" for="email">Your E-mail:</label>
+      <input type="email" size="25" maxlength="96" name="email" value="">
+
+    
+      <input type="text" name="daigo" style="display:none;">
+      <input type="hidden" name="notify_me" value="true">
+    </form>
+    <div id="notify-modal-success" style="display:none">
+      <p>You have been successfully subscribed to the Notification List for this product and will therefore receive an e-mail from us when it is back in stock!</p>
+      <p>For security reasons, an e-mail has been sent to you acknowledging your subscription. Please remember that this subscription will not result in you receiving any e-mail from us about anything other than the restocking of this item.</p>
+      <p>If, for any reason, you would like to unsubscribe from the Notification List for this product you will find details of how to do so in the e-mail that has just been sent to you!</p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/programming#" id="close-notify" style="display: none" data-dismiss="modal" data-target="#notify-modal">Close</a>
+    <a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/programming#" id="submit-notify" rel="nofollow">Notify Me</a>
+  </div>
+</div>
+    </header>
+  </div>
+
+		<div class="content-left-wrapper">
+			<div class="hidden-phone hidden-tablet sidebar-left-wrapper" style="position: absolute;">
+				<header class="sidebar-left">
+			    <h1><a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/overview">Adafruit Analog Accelerometer Breakouts</a></h1>
+			    <span class="tagline"><a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/overview">ADXL335, ADXL326 and ADXL377 Accelerometer Quickstart</a></span>
+			    <ul class="page-parent">
+							<li class="">
+		<a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/overview" class="sidebar-parent">Overview</a>
+				<i class="icon-chevron-right hidden-phone hidden-tablet"></i>
+</li>
+	<li class="">
+		<a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/wiring" class="sidebar-parent">Assembly and Wiring</a>
+				<i class="icon-chevron-right hidden-phone hidden-tablet"></i>
+</li>
+	<li class="active">
+		<a href="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System.html" class="sidebar-parent">Calibration and Programming</a>
+				<i class="icon-chevron-right hidden-phone hidden-tablet"></i>
+</li>
+	<li class="">
+		<a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/downloads" class="sidebar-parent">Downloads</a>
+				<i class="icon-chevron-right hidden-phone hidden-tablet"></i>
+</li>
+
+						<li class="single-page-spacer"></li>
+						<li class="single-page-link "><a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts?view=all">Single Page</a><i class="icon-list-alt"></i></li>
+						<li><a href="http://learn.adafruit.com/downloads/pdf/adafruit-analog-accelerometer-breakouts.pdf">Download PDF</a><i class="icon-download-alt"></i></li>
+			    </ul>
+			  </header>
+			  <header class="sidebar-meta">
+  <p>
+    <i class="icon-comment"></i><a href="http://learn.adafruit.com/pages/747/settings_modal" class="feedback-link" data-method="get" data-remote="true" rel="nofollow" title="View Settings">
+        Feedback?  Corrections?
+</a>  </p>
+</header>
+			  
+			</div>
+			<article class="content">
+					<h1 class="headline">
+						<span>Calibration and Programming</span>
+							<span class="author">Created by <a href="http://learn.adafruit.com/users/11">Bill Earl</a> </span>
+					</h1>				
+					<div class="page-content">			
+							    <div class="row-fluid build-text">
+      
+      
+<h1>
+<a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/programming#static-calibration" class="anchor-link"><span class="icon-link"></span></a><span id="static-calibration" class="anchor-link-target"></span>Static Calibration:</h1>As with all sensors, there is some variation in output between samples of these accelerometers.  For non-critical applications such as game controllers, or simple motion or tilt sensors, these variations are not important.  But for applications requiring precise measurements, calibration to a reliable reference is a good idea.<br>
+    </div>
+      <div class="row-fluid build-image">
+        <div class="build-image-center">
+          <a href="http://learn.adafruit.com/assets/2498">
+            <img class="2498-asset" src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/Jiminy_Gravity.jpg" alt="Jiminy_Gravity.jpg">
+</a>        </div>
+      </div>
+    <div class="row-fluid build-text">
+      
+      
+      
+      
+      
+<h2>
+<a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/programming#gravity-as-a-calibration-reference" class="anchor-link"><span class="icon-link"></span></a><span id="gravity-as-a-calibration-reference" class="anchor-link-target"></span>Gravity as a&nbsp;Calibration Reference</h2>Acceleration is measured in units of gravitational force or "G", where 1G represents the gravitational pull at the surface of the earth. &nbsp;<a href="http://www.youtube.com/watch?v=2ORJ7B1bqEY">Despite what you may have heard</a>, gravity is a pretty stable force and makes a convenient and reliable&nbsp;calibration reference if you happen to be a&nbsp;surface-dwelling earthling.
+    
+    
+    
+    
+    </div>
+    <div class="row-fluid build-alert">
+      <div class="alert alert-error">
+        <i class="icon-warning-sign"></i>
+        For High-G accelerometers such as the ADXL377, the +/- 1G range of static calibration is too small to assure good accuracy over the +/- 200G range of the sensor.  Accurate calibration for extreme G-forces requires more specialized equipment to repeatably create these extreme forces in a controlled environment.  One commonly used technique is to drop the accelerometer from a known height and measure the negative acceleration at impact.
+      </div>
+    </div>
+    <div class="row-fluid build-text">
+      
+      
+      
+      
+      
+<h2>
+<a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/programming#calibration-method" class="anchor-link"><span class="icon-link"></span></a><span id="calibration-method" class="anchor-link-target"></span>Calibration Method:</h2>To calibrate the sensor to the gravitational reference, you need to determine the sensor output for each axis when it is precisely aligned with the axis of gravitational pull. &nbsp;Laboratory quality calibration uses precision positioning jigs. &nbsp;The method described here&nbsp;is simple and gives surprisingly&nbsp;good results.&nbsp;
+    
+    
+    
+    
+    </div>
+      <div class="row-fluid build-image">
+        <div class="build-image-center">
+          <a href="http://learn.adafruit.com/assets/2514">
+            <img class="2514-asset" src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/Coordinates.png" alt="Coordinates.png">
+</a>        </div>
+      </div>
+      <table class="build-table">
+      <tbody><tr class="build-row">
+          <td class="side-images">
+            <a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/programming#step-7" class="anchor-link"><span class="icon-link"></span></a>
+            <span id="step-7" class="anchor-link-target"></span>
+            <ul>
+              <li class="medium-side">
+                <a href="http://learn.adafruit.com/assets/2515" class="large-side-image-link">
+                  <img class="2515-asset medium-side-image" src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/tinybreadboard_LRG.jpg" alt="tinybreadboard_LRG.jpg">
+</a>              </li>
+            </ul>
+          </td>
+        <td class="side-text">
+<b>Mount the Sensor:<br></b>First mount the sensor to a <a href="http://www.adafruit.com/products/65">small breadboard</a>&nbsp;like the one on the left. &nbsp;The back and squared edges of the breadboard make a reasonably accurate set of reference planes to orient&nbsp;the sensor for calibration.
+<br><br><b>Wire the Sensor:<br></b>Wire the sensor&nbsp;as shown below. &nbsp;This is equivalent to the&nbsp;circuit shown on the previous page, with the addition of a switch.<br></td>
+      </tr>
+      </tbody></table>
+      <div class="row-fluid build-image">
+        <div class="build-image-center">
+          <a href="http://learn.adafruit.com/assets/2513">
+            <img class="2513-asset" src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/Accelerometer_Calibration_bb-1024.jpg" alt="Accelerometer_Calibration_bb-1024.jpg">
+</a>        </div>
+      </div>
+    <div class="row-fluid build-text">
+      
+      
+      
+      
+      
+<h2>
+<a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/programming#run-the-calibration-sketch" class="anchor-link"><span class="icon-link"></span></a><span id="run-the-calibration-sketch" class="anchor-link-target"></span>Run the&nbsp;Calibration Sketch</h2>
+<ul>
+<li>Load the sketch below onto the Arduino and run it.<br>
+</li>
+<li>Open the Serial Monitor.<br>
+</li>
+<li>Lay the breadboard with the sensor on a flat surface</li>
+<ul>
+<li>Press and hold the button until you see "Calibrate" in the serial monitor.</li>
+<li>This will calibrate the minimum value for the z axis.</li>
+</ul>
+<li>Stand the breadboard on the front edge and press the button again. to calibrate +y<br>
+</li>
+<li>Repeat this for the three other edges to calibrate +x, -y and -x.<br>
+</li>
+<li>Turn the breadboard upside down and press the button again to calibrate +z. &nbsp;(Hint, the underside of a table works well to steady it.)</li>
+</ul>
+    </div>
+    <div class="row-fluid build-text">
+      
+      
+      
+      
+      
+<h2>
+<a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/programming#calibration-sketch-output" class="anchor-link"><span class="icon-link"></span></a><span id="calibration-sketch-output" class="anchor-link-target"></span>Calibration Sketch Output:</h2>
+<br>Once calibrated, the output will show the calibrated raw range for each axis, followed by the&nbsp;measured "G" forces. &nbsp;The raw ranges can be used as constants in sketches.<br><br><span>Raw Ranges: X: 408-616, Y: 398-610, Z: 422-625<br>511, 511, 625 :: -0.01G, 0.07G, 1.00G<br>Raw Ranges: X: 408-616, Y: 398-610, Z: 422-625<br>511, 511, 625 :: -0.01G, 0.07G, 1.00G<br>Raw Ranges: X: 408-616, Y: 398-610, Z: 422-625<br>511, 511, 625 :: -0.01G, 0.07G, 1.00G<br>Raw Ranges: X: 408-616, Y: 398-610, Z: 422-625<br>511, 511, 625 :: -0.01G, 0.07G, 1.00G<br>Raw Ranges: X: 408-616, Y: 398-610, Z: 422-625<br></span>
+    </div>
+    <div class="row-fluid build-text">
+      
+      
+      
+      
+      <h1>
+<a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/programming#calibration-sketch" class="anchor-link"><span class="icon-link"></span></a><span id="calibration-sketch" class="anchor-link-target"></span>Calibration Sketch</h1>
+    </div>
+    <div class="build-code">
+      <div class="code-copy-container" style="position: absolute; visibility: visible;">
+         <div class="code-copy-button">Copy Code</div>
+         <div class="zero-clipboard" style="position:absolute; left:0px; top:0px; width:63px; height:14px; z-index:99"><embed id="ZeroClipboardMovie_1" src="/assets/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="63" height="14" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=63&amp;height=14" wmode="transparent"><div class="here">here</div></embed></div>
+      </div>
+      <pre class="code-text-only" style="display: none;">const int xInput = A0;
+const int yInput = A1;
+const int zInput = A2;
+const int buttonPin = 2;
+
+// Raw Ranges:
+// initialize to mid-range and allow calibration to
+// find the minimum and maximum for each axis
+int xRawMin = 512;
+int xRawMax = 512;
+
+int yRawMin = 512;
+int yRawMax = 512;
+
+int zRawMin = 512;
+int zRawMax = 512;
+
+// Take multiple samples to reduce noise
+const int sampleSize = 10;
+
+void setup() 
+{
+  analogReference(EXTERNAL);
+  Serial.begin(9600);
+}
+
+void loop() 
+{
+  int xRaw = ReadAxis(xInput);
+  int yRaw = ReadAxis(yInput);
+  int zRaw = ReadAxis(zInput);
+  
+  if (digitalRead(buttonPin) == LOW)
+  {
+    AutoCalibrate(xRaw, yRaw, zRaw);
+  }
+  else
+  {
+    Serial.print("Raw Ranges: X: ");
+    Serial.print(xRawMin);
+    Serial.print("-");
+    Serial.print(xRawMax);
+    
+    Serial.print(", Y: ");
+    Serial.print(yRawMin);
+    Serial.print("-");
+    Serial.print(yRawMax);
+    
+    Serial.print(", Z: ");
+    Serial.print(zRawMin);
+    Serial.print("-");
+    Serial.print(zRawMax);
+    Serial.println();
+    Serial.print(xRaw);
+    Serial.print(", ");
+    Serial.print(yRaw);
+    Serial.print(", ");
+    Serial.print(zRaw);
+    
+    // Convert raw values to 'milli-Gs"
+    long xScaled = map(xRaw, xRawMin, xRawMax, -1000, 1000);
+    long yScaled = map(yRaw, yRawMin, yRawMax, -1000, 1000);
+    long zScaled = map(zRaw, zRawMin, zRawMax, -1000, 1000);
+  
+    // re-scale to fractional Gs
+    float xAccel = xScaled / 1000.0;
+    float yAccel = yScaled / 1000.0;
+    float zAccel = zScaled / 1000.0;
+  
+    Serial.print(" :: ");
+    Serial.print(xAccel);
+    Serial.print("G, ");
+    Serial.print(yAccel);
+    Serial.print("G, ");
+    Serial.print(zAccel);
+    Serial.println("G");
+  
+  delay(500);
+  }
+}
+
+//
+// Read "sampleSize" samples and report the average
+//
+int ReadAxis(int axisPin)
+{
+  long reading = 0;
+  analogRead(axisPin);
+  delay(1);
+  for (int i = 0; i &lt; sampleSize; i++)
+  {
+    reading += analogRead(axisPin);
+  }
+  return reading/sampleSize;
+}
+
+//
+// Find the extreme raw readings from each axis
+//
+void AutoCalibrate(int xRaw, int yRaw, int zRaw)
+{
+  Serial.println("Calibrate");
+  if (xRaw &lt; xRawMin)
+  {
+    xRawMin = xRaw;
+  }
+  if (xRaw &gt; xRawMax)
+  {
+    xRawMax = xRaw;
+  }
+  
+  if (yRaw &lt; yRawMin)
+  {
+    yRawMin = yRaw;
+  }
+  if (yRaw &gt; yRawMax)
+  {
+    yRawMax = yRaw;
+  }
+
+  if (zRaw &lt; zRawMin)
+  {
+    zRawMin = zRaw;
+  }
+  if (zRaw &gt; zRawMax)
+  {
+    zRawMax = zRaw;
+  }
+}</pre>
+      <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span class="kwd">const</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> xInput </span><span class="pun">=</span><span class="pln"> A0</span><span class="pun">;</span></li><li class="L1"><span class="kwd">const</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> yInput </span><span class="pun">=</span><span class="pln"> A1</span><span class="pun">;</span></li><li class="L2"><span class="kwd">const</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> zInput </span><span class="pun">=</span><span class="pln"> A2</span><span class="pun">;</span></li><li class="L3"><span class="kwd">const</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> buttonPin </span><span class="pun">=</span><span class="pln"> </span><span class="lit">2</span><span class="pun">;</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="com">// Raw Ranges:</span></li><li class="L6"><span class="com">// initialize to mid-range and allow calibration to</span></li><li class="L7"><span class="com">// find the minimum and maximum for each axis</span></li><li class="L8"><span class="kwd">int</span><span class="pln"> xRawMin </span><span class="pun">=</span><span class="pln"> </span><span class="lit">512</span><span class="pun">;</span></li><li class="L9"><span class="kwd">int</span><span class="pln"> xRawMax </span><span class="pun">=</span><span class="pln"> </span><span class="lit">512</span><span class="pun">;</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="kwd">int</span><span class="pln"> yRawMin </span><span class="pun">=</span><span class="pln"> </span><span class="lit">512</span><span class="pun">;</span></li><li class="L2"><span class="kwd">int</span><span class="pln"> yRawMax </span><span class="pun">=</span><span class="pln"> </span><span class="lit">512</span><span class="pun">;</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="kwd">int</span><span class="pln"> zRawMin </span><span class="pun">=</span><span class="pln"> </span><span class="lit">512</span><span class="pun">;</span></li><li class="L5"><span class="kwd">int</span><span class="pln"> zRawMax </span><span class="pun">=</span><span class="pln"> </span><span class="lit">512</span><span class="pun">;</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="com">// Take multiple samples to reduce noise</span></li><li class="L8"><span class="kwd">const</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> sampleSize </span><span class="pun">=</span><span class="pln"> </span><span class="lit">10</span><span class="pun">;</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="kwd">void</span><span class="pln"> setup</span><span class="pun">()</span><span class="pln"> </span></li><li class="L1"><span class="pun">{</span></li><li class="L2"><span class="pln">  analogReference</span><span class="pun">(</span><span class="pln">EXTERNAL</span><span class="pun">);</span></li><li class="L3"><span class="pln">  </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">begin</span><span class="pun">(</span><span class="lit">9600</span><span class="pun">);</span></li><li class="L4"><span class="pun">}</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="kwd">void</span><span class="pln"> loop</span><span class="pun">()</span><span class="pln"> </span></li><li class="L7"><span class="pun">{</span></li><li class="L8"><span class="pln">  </span><span class="kwd">int</span><span class="pln"> xRaw </span><span class="pun">=</span><span class="pln"> </span><span class="typ">ReadAxis</span><span class="pun">(</span><span class="pln">xInput</span><span class="pun">);</span></li><li class="L9"><span class="pln">  </span><span class="kwd">int</span><span class="pln"> yRaw </span><span class="pun">=</span><span class="pln"> </span><span class="typ">ReadAxis</span><span class="pun">(</span><span class="pln">yInput</span><span class="pun">);</span></li><li class="L0"><span class="pln">  </span><span class="kwd">int</span><span class="pln"> zRaw </span><span class="pun">=</span><span class="pln"> </span><span class="typ">ReadAxis</span><span class="pun">(</span><span class="pln">zInput</span><span class="pun">);</span></li><li class="L1"><span class="pln">  </span></li><li class="L2"><span class="pln">  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">digitalRead</span><span class="pun">(</span><span class="pln">buttonPin</span><span class="pun">)</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> LOW</span><span class="pun">)</span></li><li class="L3"><span class="pln">  </span><span class="pun">{</span></li><li class="L4"><span class="pln">    </span><span class="typ">AutoCalibrate</span><span class="pun">(</span><span class="pln">xRaw</span><span class="pun">,</span><span class="pln"> yRaw</span><span class="pun">,</span><span class="pln"> zRaw</span><span class="pun">);</span></li><li class="L5"><span class="pln">  </span><span class="pun">}</span></li><li class="L6"><span class="pln">  </span><span class="kwd">else</span></li><li class="L7"><span class="pln">  </span><span class="pun">{</span></li><li class="L8"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">"Raw Ranges: X: "</span><span class="pun">);</span></li><li class="L9"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">xRawMin</span><span class="pun">);</span></li><li class="L0"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">"-"</span><span class="pun">);</span></li><li class="L1"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">xRawMax</span><span class="pun">);</span></li><li class="L2"><span class="pln">    </span></li><li class="L3"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">", Y: "</span><span class="pun">);</span></li><li class="L4"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">yRawMin</span><span class="pun">);</span></li><li class="L5"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">"-"</span><span class="pun">);</span></li><li class="L6"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">yRawMax</span><span class="pun">);</span></li><li class="L7"><span class="pln">    </span></li><li class="L8"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">", Z: "</span><span class="pun">);</span></li><li class="L9"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">zRawMin</span><span class="pun">);</span></li><li class="L0"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">"-"</span><span class="pun">);</span></li><li class="L1"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">zRawMax</span><span class="pun">);</span></li><li class="L2"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="pln">println</span><span class="pun">();</span></li><li class="L3"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">xRaw</span><span class="pun">);</span></li><li class="L4"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">", "</span><span class="pun">);</span></li><li class="L5"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">yRaw</span><span class="pun">);</span></li><li class="L6"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">", "</span><span class="pun">);</span></li><li class="L7"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">zRaw</span><span class="pun">);</span></li><li class="L8"><span class="pln">    </span></li><li class="L9"><span class="pln">    </span><span class="com">// Convert raw values to 'milli-Gs"</span></li><li class="L0"><span class="pln">    </span><span class="kwd">long</span><span class="pln"> xScaled </span><span class="pun">=</span><span class="pln"> map</span><span class="pun">(</span><span class="pln">xRaw</span><span class="pun">,</span><span class="pln"> xRawMin</span><span class="pun">,</span><span class="pln"> xRawMax</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1000</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1000</span><span class="pun">);</span></li><li class="L1"><span class="pln">    </span><span class="kwd">long</span><span class="pln"> yScaled </span><span class="pun">=</span><span class="pln"> map</span><span class="pun">(</span><span class="pln">yRaw</span><span class="pun">,</span><span class="pln"> yRawMin</span><span class="pun">,</span><span class="pln"> yRawMax</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1000</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1000</span><span class="pun">);</span></li><li class="L2"><span class="pln">    </span><span class="kwd">long</span><span class="pln"> zScaled </span><span class="pun">=</span><span class="pln"> map</span><span class="pun">(</span><span class="pln">zRaw</span><span class="pun">,</span><span class="pln"> zRawMin</span><span class="pun">,</span><span class="pln"> zRawMax</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1000</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1000</span><span class="pun">);</span></li><li class="L3"><span class="pln">  </span></li><li class="L4"><span class="pln">    </span><span class="com">// re-scale to fractional Gs</span></li><li class="L5"><span class="pln">    </span><span class="kwd">float</span><span class="pln"> xAccel </span><span class="pun">=</span><span class="pln"> xScaled </span><span class="pun">/</span><span class="pln"> </span><span class="lit">1000.0</span><span class="pun">;</span></li><li class="L6"><span class="pln">    </span><span class="kwd">float</span><span class="pln"> yAccel </span><span class="pun">=</span><span class="pln"> yScaled </span><span class="pun">/</span><span class="pln"> </span><span class="lit">1000.0</span><span class="pun">;</span></li><li class="L7"><span class="pln">    </span><span class="kwd">float</span><span class="pln"> zAccel </span><span class="pun">=</span><span class="pln"> zScaled </span><span class="pun">/</span><span class="pln"> </span><span class="lit">1000.0</span><span class="pun">;</span></li><li class="L8"><span class="pln">  </span></li><li class="L9"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">" :: "</span><span class="pun">);</span></li><li class="L0"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">xAccel</span><span class="pun">);</span></li><li class="L1"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">"G, "</span><span class="pun">);</span></li><li class="L2"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">yAccel</span><span class="pun">);</span></li><li class="L3"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">"G, "</span><span class="pun">);</span></li><li class="L4"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">zAccel</span><span class="pun">);</span></li><li class="L5"><span class="pln">    </span><span class="typ">Serial</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"G"</span><span class="pun">);</span></li><li class="L6"><span class="pln">  </span></li><li class="L7"><span class="pln">  delay</span><span class="pun">(</span><span class="lit">500</span><span class="pun">);</span></li><li class="L8"><span class="pln">  </span><span class="pun">}</span></li><li class="L9"><span class="pun">}</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="com">//</span></li><li class="L2"><span class="com">// Read "sampleSize" samples and report the average</span></li><li class="L3"><span class="com">//</span></li><li class="L4"><span class="kwd">int</span><span class="pln"> </span><span class="typ">ReadAxis</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> axisPin</span><span class="pun">)</span></li><li class="L5"><span class="pun">{</span></li><li class="L6"><span class="pln">  </span><span class="kwd">long</span><span class="pln"> reading </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span></li><li class="L7"><span class="pln">  analogRead</span><span class="pun">(</span><span class="pln">axisPin</span><span class="pun">);</span></li><li class="L8"><span class="pln">  delay</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);</span></li><li class="L9"><span class="pln">  </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> sampleSize</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span></li><li class="L0"><span class="pln">  </span><span class="pun">{</span></li><li class="L1"><span class="pln">    reading </span><span class="pun">+=</span><span class="pln"> analogRead</span><span class="pun">(</span><span class="pln">axisPin</span><span class="pun">);</span></li><li class="L2"><span class="pln">  </span><span class="pun">}</span></li><li class="L3"><span class="pln">  </span><span class="kwd">return</span><span class="pln"> reading</span><span class="pun">/</span><span class="pln">sampleSize</span><span class="pun">;</span></li><li class="L4"><span class="pun">}</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="com">//</span></li><li class="L7"><span class="com">// Find the extreme raw readings from each axis</span></li><li class="L8"><span class="com">//</span></li><li class="L9"><span class="kwd">void</span><span class="pln"> </span><span class="typ">AutoCalibrate</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> xRaw</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> yRaw</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> zRaw</span><span class="pun">)</span></li><li class="L0"><span class="pun">{</span></li><li class="L1"><span class="pln">  </span><span class="typ">Serial</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Calibrate"</span><span class="pun">);</span></li><li class="L2"><span class="pln">  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">xRaw </span><span class="pun">&lt;</span><span class="pln"> xRawMin</span><span class="pun">)</span></li><li class="L3"><span class="pln">  </span><span class="pun">{</span></li><li class="L4"><span class="pln">    xRawMin </span><span class="pun">=</span><span class="pln"> xRaw</span><span class="pun">;</span></li><li class="L5"><span class="pln">  </span><span class="pun">}</span></li><li class="L6"><span class="pln">  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">xRaw </span><span class="pun">&gt;</span><span class="pln"> xRawMax</span><span class="pun">)</span></li><li class="L7"><span class="pln">  </span><span class="pun">{</span></li><li class="L8"><span class="pln">    xRawMax </span><span class="pun">=</span><span class="pln"> xRaw</span><span class="pun">;</span></li><li class="L9"><span class="pln">  </span><span class="pun">}</span></li><li class="L0"><span class="pln">  </span></li><li class="L1"><span class="pln">  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">yRaw </span><span class="pun">&lt;</span><span class="pln"> yRawMin</span><span class="pun">)</span></li><li class="L2"><span class="pln">  </span><span class="pun">{</span></li><li class="L3"><span class="pln">    yRawMin </span><span class="pun">=</span><span class="pln"> yRaw</span><span class="pun">;</span></li><li class="L4"><span class="pln">  </span><span class="pun">}</span></li><li class="L5"><span class="pln">  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">yRaw </span><span class="pun">&gt;</span><span class="pln"> yRawMax</span><span class="pun">)</span></li><li class="L6"><span class="pln">  </span><span class="pun">{</span></li><li class="L7"><span class="pln">    yRawMax </span><span class="pun">=</span><span class="pln"> yRaw</span><span class="pun">;</span></li><li class="L8"><span class="pln">  </span><span class="pun">}</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">zRaw </span><span class="pun">&lt;</span><span class="pln"> zRawMin</span><span class="pun">)</span></li><li class="L1"><span class="pln">  </span><span class="pun">{</span></li><li class="L2"><span class="pln">    zRawMin </span><span class="pun">=</span><span class="pln"> zRaw</span><span class="pun">;</span></li><li class="L3"><span class="pln">  </span><span class="pun">}</span></li><li class="L4"><span class="pln">  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">zRaw </span><span class="pun">&gt;</span><span class="pln"> zRawMax</span><span class="pun">)</span></li><li class="L5"><span class="pln">  </span><span class="pun">{</span></li><li class="L6"><span class="pln">    zRawMax </span><span class="pun">=</span><span class="pln"> zRaw</span><span class="pun">;</span></li><li class="L7"><span class="pln">  </span><span class="pun">}</span></li><li class="L8"><span class="pun">}</span></li></ol></pre>
+    </div>
+
+						<div class="page-navigation">
+								<a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/wiring" class="previous-page">&lt; Assembly and Wiring</a>
+								<a href="http://learn.adafruit.com/adafruit-analog-accelerometer-breakouts/downloads" class="next-page">Downloads &gt;</a>
+							<div class="clear"></div>
+						</div>
+						<div class="page-last-updated">Last updated on 2013-08-24 at 07.15.42 PM</div>
+					</div>
+			</article>
+		</div>
+	</div>
+		<div class="related-guides-wrapper">
+  <h3>Related Guides</h3>
+  <div class="related-guides-content">
+    <ul>
+        <li class="related-guide">
+          <a href="http://learn.adafruit.com/usb-snes-gamepad">  
+            <img src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/done.jpg">
+</a>          <a href="http://learn.adafruit.com/usb-snes-gamepad">  
+            <h4>USB SNES Gamepad</h4>
+</a>          <a href="http://learn.adafruit.com/usb-snes-gamepad">  
+            <p>Make a USB gamepad with an accelerometer inside</p>
+</a>        </li>
+    </ul>
+    <div class="clear"></div>
+  </div>
+</div>
+	<div class="adafruit-footer">
+  <div class="footer-content">
+    <div class="footer-section about-adafruit">
+      <h4>About Adafruit</h4>
+      <p>Adafruit was founded in 2005 by MIT engineer, Limor "Ladyada" Fried. Her goal was to create the best place online for learning electronics
+        and making the best designed products for makers of all ages and skill levels.
+        <br>
+        <a href="http://www.adafruit.com/about">Learn More.</a>
+      </p>
+    </div>
+    <div class="footer-section about-als">
+      <h4>The Adafruit Learning System</h4>
+      <p>In 2012, after years of coding tutorials by hand, Limor put together a small team to build a custom tutorial management system from the ground up.  The Adafruit Learning System allows us to make a wide range of awesome tutorials fast and efficiently.  We hope these tutorials will help you learn something new, and inspire you to make something great!
+      </p>
+    </div>
+    <div class="footer-section useful-stuff">
+      <h4>Useful Stuff</h4>
+      <p>
+        <a href="http://forums.adafruit.com/">Support Forums</a>
+        <a href="http://adafruit.com/">Adafruit Shop</a>
+        <a href="http://learn.adafruit.com/feed">RSS</a>        
+      </p>
+    </div>
+    <div class="clear"></div>  
+  </div>
+  <div class="clear"></div> 
+  <div class="footer-bottom">
+    <div class="footer-links">
+      399 tutorials and counting
+    </div>
+    <span class="footer-star">
+      <img alt="Footerflower" height="25" src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/footerflower-baae889228f80f00a337500117a631a3.png" width="25">
+    </span>
+    <div class="footer-powered">
+      Powered by Adafruit Learning Technologies
+    </div>
+  </div>
+</div>
+</div>
+  </div>
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-7723544-1']);
+      _gaq.push(['_setDomainName', 'adafruit.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  <script src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/application-feb77329b01d56a5f1184c30330bbad0.js" type="text/javascript"></script>
+
+<ul class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" tabindex="0" style="z-index: 1031; display: none;"></ul><script src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/nr-283.min.js"></script><script type="text/javascript" src="./Accel Calibration and Programming   Adafruit Analog Accelerometer Breakouts   Adafruit Learning System_files/308175db61"></script></body></html>
